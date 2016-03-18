@@ -1,9 +1,10 @@
+import hu.elte.progtech1.cwjkl1.Homokjaro;
 
-import cwjkl1.progtech1.elte.hu.Homokjaro;
-
-public class Main1 {
-    public static void main(Stringp[] args){
+public class main1 {
+    public static void main(String[] args){
         Homokjaro bela = new Homokjaro(new String("Bela"), 12);
+
+        System.out.println(bela);
     }
 }
 

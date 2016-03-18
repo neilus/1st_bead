@@ -1,4 +1,5 @@
-package cwjkl1.progtech1.elte.hu;
+package hu.elte.progtech1.cwjkl1;
+
 
 /**
  * Lény absztrakt osztály
@@ -37,8 +38,28 @@ public abstract class Leny {
         return distance;
     }
 
-    public bool getIsLiving() {
+    public boolean getIsLiving() {
 
         return isLiving;
+    }
+
+    protected void rush(int water, int distance){
+
+    }
+
+    /**
+     * pretty JSON-szeru alakban stringesiti az objektumot
+     *
+     * @return
+     */
+    @Override
+    public String toString(){
+        return "{" +
+                "\n\tname: \"" + this.name + "\"" +
+                ",\n\twater: " + this.water +
+                ",\n\tdistance: " + this.distance +
+                ",\n\twater: " + this.water +
+                ",\n\tisLiving: "+ this.isLiving +
+                "\n}\n";
     }
 }
