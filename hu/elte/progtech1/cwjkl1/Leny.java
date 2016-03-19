@@ -5,7 +5,7 @@ package hu.elte.progtech1.cwjkl1;
  * Lény absztrakt osztály
  */
 public abstract class Leny {
-    private boolean is_living;
+    private boolean living;
     private String name;
     private int distance;
     private int water;
@@ -55,7 +55,7 @@ public abstract class Leny {
      * @return this <strong>dead</strong> creature
      */
     protected Leny die(){
-        is_living = false;
+        living = false;
 
         return this;
     }
@@ -68,7 +68,7 @@ public abstract class Leny {
     public Leny(String name, int water){
         this.name = name;
         this.water = (water > getMaxWater())? getMaxWater():water;
-        this.is_living = true;
+        this.living = true;
         this.distance = 0;
     }
 
@@ -147,7 +147,7 @@ public abstract class Leny {
      */
     public boolean isLiving() {
 
-        return is_living;
+        return living;
     }
 
     /**
@@ -161,7 +161,7 @@ public abstract class Leny {
                 "\n\tname: \"" + this.name + "\"" +
                 ",\n\twater: " + this.water +
                 ",\n\tdistance: " + this.distance +
-                ",\n\tisLiving: "+ this.is_living +
+                ",\n\tisLiving: "+ this.living +
                 "\n}\n";
     }
 }

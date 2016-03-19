@@ -1,12 +1,16 @@
 package hu.elte.progtech1.cwjkl1;
 
-public class Homokjaro extends Leny {
-    private final int maxWater = 8;
+/**
+ * Created by enorsan on 3/19/16.
+ */
+public class Szivacs extends Leny{
+    private final int maxWater = 20;
 
-    Homokjaro(){
-        super("Homokjaro", 8);
+    Szivacs() {
+        super("Szivacs", 30);
     }
-    public Homokjaro(String name, int water){
+
+    Szivacs(String name, int water){
         super(name, water);
     }
 
@@ -30,8 +34,8 @@ public class Homokjaro extends Leny {
      * @return this object instance after application
      */
     @Override
-    public Leny napos() {
-        this.saveWater(0).consumeWater(1).move(3);
+    Leny napos() {
+        this.saveWater(0).consumeWater(4).move(0);
 
         return this;
     }
@@ -48,10 +52,10 @@ public class Homokjaro extends Leny {
      * @return this object instance after application
      */
     @Override
-    public Leny felhos() {
-        this.saveWater(0).consumeWater(0).move(1);
+    Leny felhos() {
+        this.saveWater(0).consumeWater(1).move(1);
 
-        return this;
+        return null;
     }
 
     /**
@@ -66,10 +70,9 @@ public class Homokjaro extends Leny {
      * @return this object instance after application
      */
     @Override
-    public Leny esos() {
-        this.saveWater(3).consumeWater(0).move(0);
+    Leny esos() {
+        this.saveWater(6).consumeWater(0).move(3);
 
         return null;
     }
-
 }
