@@ -10,7 +10,7 @@ public class Szivacs extends Leny{
         super("Szivacs", 30);
     }
 
-    Szivacs(String name, int water){
+    public Szivacs(String name, int water){
         super(name, water);
     }
 

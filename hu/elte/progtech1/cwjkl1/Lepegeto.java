@@ -9,7 +9,7 @@ public class Lepegeto extends Leny{
         super("Lepegeto", 20);
     }
 
-    Lepegeto(String name, int water) {
+    public Lepegeto(String name, int water) {
         super(name, water);
     }
 
