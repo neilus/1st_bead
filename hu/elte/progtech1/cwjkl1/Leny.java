@@ -59,6 +59,7 @@ public abstract class Leny {
 
         return this;
     }
+
     /**
      * Constructs a Leny abstract object
      *
@@ -150,6 +151,24 @@ public abstract class Leny {
         return living;
     }
 
+    /// for formatting String output
+    private static String format = "| %-10s | %-5s | %-8s | %-5s |";
+    /**
+     * print a header for printing a prettified table of a list of these objects
+     * @return
+     */
+    public static String header(){
+        StringBuilder header = new StringBuilder();
+        header.append("+------------+-------+----------+-------+\n");
+        header.append(String.format(format, "name", "water", "distance", "lives"));
+        header.append("\n+------------+-------+----------+-------+");
+
+        return header.toString();
+    }
+
+    public static String footer() {
+        return "+------------+-------+----------+-------+\n";
+    }
     /**
      * pretty JSON-szeru alakban stringesiti az objektumot
      *
@@ -157,11 +176,7 @@ public abstract class Leny {
      */
     @Override
     public String toString(){
-        return "{" +
-                "\n\tname: \"" + this.name + "\"" +
-                ",\n\twater: " + this.water +
-                ",\n\tdistance: " + this.distance +
-                ",\n\tisLiving: "+ this.living +
-                "\n}\n";
+
+        return String.format(format, getName(), getWater(), getDistance(), isLiving());
     }
 }
