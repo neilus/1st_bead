@@ -79,7 +79,7 @@ public class Main2 {
         System.out.println(versenyzok);
 
         /*
-        ToDo: az utolso sorban a verseny napjai szerepelnek karaktersorozatban:
+        Done: az utolso sorban a verseny napjai szerepelnek karaktersorozatban:
             n: napos,
             f: felhos,
             e: esos
@@ -100,6 +100,23 @@ public class Main2 {
             }
             System.out.println("Az allas a " + i + " napon:");
             System.out.println(versenyzok);
+        }
+
+        // ToDo: hatarozzuk meg es irjuk ki a nyertes nevet
+        int max = 0;
+        for(int i = 1; i < versenyzok.size(); i++){
+            if ( versenyzok.get(i).getDistance() > versenyzok.get(max).getDistance() ) {
+                // ha meg el is akkor o vezet...
+                max = versenyzok.get(i).isLiving() ? i : max;
+            }
+
+        }
+
+        if (versenyzok.get(max).isLiving()) {
+            System.out.print("A nyertes versenyzo neve: ");
+            System.out.println(versenyzok.get(max).getName());
+        } else {
+            System.out.println("sajnos minden versenyzo meghalt. ;(");
         }
     }
 }
