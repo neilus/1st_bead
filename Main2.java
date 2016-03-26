@@ -3,6 +3,7 @@ import hu.elte.progtech1.cwjkl1.Leny;
 import hu.elte.progtech1.cwjkl1.Lepegeto;
 import hu.elte.progtech1.cwjkl1.Szivacs;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -39,8 +40,17 @@ public class Main2 {
 
     public static void main(String[] args) throws IOException {
         //Done: input inicializalasa
-        Scanner scan = new Scanner(System.in);
+//        Scanner scan = new Scanner(System.in);
+        if (args.length != 1) {
+            System.err.println("ERROR: pontosan egy paramétert várok:");
+            System.err.println("ERROR: az input fájl nevét:");
+            System.err.println("ERROR: pl:");
+            System.err.println("ERROR: $ java Main2 input1.txt");
 
+            System.exit(1);
+        }
+
+        Scanner scan = new Scanner(new File(args[0]));
         //Done: 1. sor a az indulo lenyek szama
         int lenyekSzama = Integer.parseInt(scan.nextLine());
 
@@ -79,19 +89,13 @@ public class Main2 {
             Nap nap = Nap.valueOf(napok.substring(i, ++i));
             switch(nap){
                 case n:
-                    for(Leny versenyzo:versenyzok){
-                        versenyzo.napos();
-                    }
+                    versenyzok.forEach(Leny::napos);
                     break;
                 case f:
-                    for(Leny versenyzo:versenyzok){
-                        versenyzo.felhos();
-                    }
+                    versenyzok.forEach(Leny::felhos);
                     break;
                 case e:
-                    for(Leny versenyzo:versenyzok){
-                        versenyzo.esos();
-                    }
+                    versenyzok.forEach(Leny::esos);
                     break;
             }
             System.out.println("Az allas a " + i + " napon:");
