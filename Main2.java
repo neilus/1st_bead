@@ -11,14 +11,16 @@ import java.util.Scanner;
 import java.util.StringTokenizer;
 
 public class Main2 {
-    private enum Faj { h, s, l};
-    private enum Nap {n, f, e};
+    private enum Faj { h, s, l}
+
+    private enum Nap {n, f, e}
+
     /**
      * letrehoz egy megfelelo tipusu versenyzot
      * @param sor az input egy String sorat, amely a versenyzo parametereit tartalmazza
      * @return Leny, amely a String alapjan megfelelo gyermek osztaly
      */
-    public static Leny versenyzo(String sor) {
+    private static Leny versenyzo(String sor) {
         StringTokenizer st = new StringTokenizer(sor);
         //FixMe: nem ellenorzom az input sort!
         String name = st.nextToken();

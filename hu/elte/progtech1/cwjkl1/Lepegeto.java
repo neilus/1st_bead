@@ -1,8 +1,5 @@
 package hu.elte.progtech1.cwjkl1;
 
-/**
- * Created by enorsan on 3/19/16.
- */
 public class Lepegeto extends Leny{
     private final int maxWater = 12;
     Lepegeto(){

@@ -6,7 +6,7 @@ package hu.elte.progtech1.cwjkl1;
  */
 public abstract class Leny {
     private boolean living;
-    private String name;
+    private final String name;
     private int distance;
     private int water;
 
@@ -65,8 +65,8 @@ public abstract class Leny {
     /**
      * Constructs a Leny abstract object
      *
-     * @param name
-     * @param water
+     * @param name a leny neve
+     * @param water mennyi vizzel kezdi a versenyt
      */
     public Leny(String name, int water){
         this.name = name;
@@ -120,33 +120,26 @@ public abstract class Leny {
     public abstract Leny esos();
 
     /**
-     * Returns the amount of water the creature has
-     *
-     * @return
+     * @return the amount of water the creature has
      */
     public int getWater() {
         return water;
     }
 
     /**
-     * Returns the name of the creature
-     * @return
+     * @return Returns the name of the creature
      */
     public String getName() { return name; }
 
     /**
-     * Returns the distance the creature has already taken
-     *
-     * @return
+     * @return Returns the distance the creature has already taken
      */
     public int getDistance() {
         return distance;
     }
 
     /**
-     * Returns wether the creature is alive or not
-     *
-     * @return
+     * @return Returns wether the creature is alive or not
      */
     public boolean isLiving() {
 
@@ -154,27 +147,23 @@ public abstract class Leny {
     }
 
     /// for formatting String output
-    private static String format = "| %-10s | %-5s | %-8s | %-5s |";
+    private static final String format = "| %-10s | %-5s | %-8s | %-5s |";
     /**
-     * print a header for printing a prettified table of a list of these objects
-     * @return
+     * @return a header for printing a prettified table of a list of these objects
      */
     public static String header(){
-        StringBuilder header = new StringBuilder();
-        header.append("+------------+-------+----------+-------+\n");
-        header.append(String.format(format, "name", "water", "distance", "lives"));
-        header.append("\n+------------+-------+----------+-------+");
 
-        return header.toString();
+        return "+------------+-------+----------+-------+\n" +
+                String.format(format, "name", "water", "distance", "lives") +
+                "\n+------------+-------+----------+-------+";
     }
 
+    @SuppressWarnings("SameReturnValue")
     public static String footer() {
         return "+------------+-------+----------+-------+\n";
     }
     /**
-     * pretty JSON-szeru alakban stringesiti az objektumot
-     *
-     * @return
+     * @return this particular creatures properties in a table
      */
     @Override
     public String toString(){
