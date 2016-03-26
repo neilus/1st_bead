@@ -32,7 +32,7 @@ public class Lepegeto extends Leny{
      *
      * @return this object instance after application
      */
-    @Override
+    public @Override
     Leny napos() {
         this.saveWater(0).consumeWater(2).move(1);
 
@@ -51,7 +51,7 @@ public class Lepegeto extends Leny{
      * @return this object instance after application
      */
     @Override
-    Leny felhos() {
+    public Leny felhos() {
         this.saveWater(0).consumeWater(1).move(2);
 
         return this;
@@ -69,7 +69,7 @@ public class Lepegeto extends Leny{
      * @return this object instance after application
      */
     @Override
-    Leny esos() {
+    public Leny esos() {
         this.saveWater(3).consumeWater(0).move(1);
 
         return this;

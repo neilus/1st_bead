@@ -44,8 +44,10 @@ public abstract class Leny {
      */
     protected Leny consumeWater(int amount) {
         water -= amount;
-        if(getWater() <= 0)
+        if(getWater() <= 0){
+            water = 0;
             die();
+        }
 
         return this;
     }
@@ -89,7 +91,7 @@ public abstract class Leny {
      *
      * @return this object instance after application
      */
-    abstract Leny napos();
+    public abstract Leny napos();
 
     /**
      * Ths method has to be implemented in the child class.
@@ -102,7 +104,7 @@ public abstract class Leny {
      *
      * @return this object instance after application
      */
-    abstract Leny felhos();
+    public abstract Leny felhos();
 
     /**
      * Ths method has to be implemented in the child class.
@@ -115,7 +117,7 @@ public abstract class Leny {
      *
      * @return this object instance after application
      */
-    abstract Leny esos();
+    public abstract Leny esos();
 
     /**
      * Returns the amount of water the creature has

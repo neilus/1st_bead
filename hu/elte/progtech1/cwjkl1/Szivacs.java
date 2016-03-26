@@ -34,7 +34,7 @@ public class Szivacs extends Leny{
      * @return this object instance after application
      */
     @Override
-    Leny napos() {
+    public Leny napos() {
         this.saveWater(0).consumeWater(4).move(0);
 
         return this;
@@ -52,7 +52,7 @@ public class Szivacs extends Leny{
      * @return this object instance after application
      */
     @Override
-    Leny felhos() {
+    public Leny felhos() {
         this.saveWater(0).consumeWater(1).move(1);
 
         return null;
@@ -70,7 +70,7 @@ public class Szivacs extends Leny{
      * @return this object instance after application
      */
     @Override
-    Leny esos() {
+    public Leny esos() {
         this.saveWater(6).consumeWater(0).move(3);
 
         return null;

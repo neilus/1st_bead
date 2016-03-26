@@ -11,7 +11,7 @@ import java.util.StringTokenizer;
 
 public class Main2 {
     private enum Faj { h, s, l};
-
+    private enum Nap {n, f, e};
     /**
      * letrehoz egy megfelelo tipusu versenyzot
      * @param sor az input egy String sorat, amely a versenyzo parametereit tartalmazza
@@ -74,6 +74,28 @@ public class Main2 {
             f: felhos,
             e: esos
          */
-
+        String napok = scan.nextLine();
+        for(int i=0; i < napok.length(); ){
+            Nap nap = Nap.valueOf(napok.substring(i, ++i));
+            switch(nap){
+                case n:
+                    for(Leny versenyzo:versenyzok){
+                        versenyzo.napos();
+                    }
+                    break;
+                case f:
+                    for(Leny versenyzo:versenyzok){
+                        versenyzo.felhos();
+                    }
+                    break;
+                case e:
+                    for(Leny versenyzo:versenyzok){
+                        versenyzo.esos();
+                    }
+                    break;
+            }
+            System.out.println("Az allas a " + i + " napon:");
+            System.out.println(versenyzok);
+        }
     }
 }
