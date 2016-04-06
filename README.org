@@ -2,8 +2,11 @@
 #+subtitle: 1. beadanó
 #+author: Sana Norbert
 #+email: neilus@elte.hu
+
+#+lang: hun
 #+toc: 2
-#+lang: hu
+
+
 
 * 1. Feladat
 
@@ -74,7 +77,7 @@ A végeredmény meghatározásához kell még 3 művelet:
 
 ** TODO Osztályok és kapcsolataik
 
-#+begin_src plantuml :file osztaly_diagramm.png
+#+begin_src plantuml :file osztaly_diagramm.png :exports results
 @startuml
 Leny <|-- Homokjaro
 Leny <|-- Lepegeto
@@ -96,12 +99,14 @@ enum Faj {
 }
 
 class Leny {
- -{static}format
- -living
- -name
- -distance
- -water
+ -{static}format:String
+ -living:boolean
+ -name:String
+ -distance:int
+ -water:int
 
+ --konstruktor--
+ +Leny(name:String, water:int)
  __belső működés__
  #move(int):Leny
  #saveWater(int):Leny
@@ -127,11 +132,59 @@ class Leny {
  
 }
 
+class Lepegeto {
+ -maxWater:int
+
+ --konstruktorok--
+ ~Lepegeto()
+ +Lepegeto(name:String, water:int)
+
+ ..műveletek..
+ +napos():Leny
+ +felhos():Leny
+ +esos():Leny
+
+ ..állapotlekérdező..
+ ~getMaxWater():int
+}
+
+class Homokjaro {
+ -maxWater:int
+
+ --konstruktorok--
+ ~Lepegeto()
+ +Lepegeto(name:String, water:int)
+
+ ..műveletek..
+ +napos():Leny
+ +felhos():Leny
+ +esos():Leny
+
+ ..állapotlekérdező..
+ ~getMaxWater():int
+}
+
+class Szivacs {
+ -maxWater:int
+
+ --konstruktorok--
+ ~Lepegeto()
+ +Lepegeto(name:String, water:int)
+
+ ..műveletek..
+ +napos():Leny
+ +felhos():Leny
+ +esos():Leny
+
+ ..állapotlekérdező..
+ ~getMaxWater():int
+}
+
 @enduml
 #+end_src
 
 #+RESULTS:
-[[file:osztaly_diagramm.png]]
+[[osztaly_diagramm.png]]
 
 * TODO [#B] A megoldáshoz szükséges típusok absztrakt leírása
 
