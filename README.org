@@ -70,7 +70,7 @@ A végeredmény meghatározásához kell még 3 művelet:
 - a megtett távolság lekérdezése)
 
 
-* TODO Megoldási terv
+* TODO [#A] Megoldási terv
 
 ** TODO Osztályok és kapcsolataik
 
@@ -80,15 +80,59 @@ Leny <|-- Homokjaro
 Leny <|-- Lepegeto
 Leny <|-- Szivacs
 
-class Leny {
- +living
+Nap -left--+ Leny
+Faj -right--+ Leny
+
+enum Nap {
+ +n
+ +f
+ +e
 }
+
+enum Faj {
+ +h
+ +s
+ +l
+}
+
+class Leny {
+ -{static}format
+ -living
+ -name
+ -distance
+ -water
+
+ __belső működés__
+ #move(int):Leny
+ #saveWater(int):Leny
+ #consumeWater(int):Leny
+ #die():Leny
+
+ ..Absztrakt metódusok...
+ ~{abstract}getMaxWater():int
+ +{abstract}napos():Leny
+ +{abstract}felhos():Leny
+ +{abstract}esos():Leny
+
+ ..Getterek...
+ +getWater():int
+ +getName():String
+ +getDistance():int
+ +isLiving():boolean
+
+ --megjelenítéshez segéd--
+ +{static}header():String
+ +{static}footer():String
+ +toString():String
+ 
+}
+
 @enduml
 #+end_src
 
 #+RESULTS:
 [[file:osztaly_diagramm.png]]
 
-* TODO A megoldáshoz szükséges típusok absztrakt leírása
+* TODO [#B] A megoldáshoz szükséges típusok absztrakt leírása
 
 * TODO [#B] Tesztelési terv
