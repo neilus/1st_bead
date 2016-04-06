@@ -10,10 +10,9 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-public class Main2 {
-    private enum Faj { h, s, l}
+import static hu.elte.progtech1.cwjkl1.Leny.Nap.n;
 
-    private enum Nap {n, f, e}
+public class Main2 {
 
     /**
      * letrehoz egy megfelelo tipusu versenyzot
@@ -24,7 +23,7 @@ public class Main2 {
         StringTokenizer st = new StringTokenizer(sor);
         //FixMe: nem ellenorzom az input sort!
         String name = st.nextToken();
-        Faj faj = Faj.valueOf(st.nextToken());
+        Leny.Faj faj = Leny.Faj.valueOf(st.nextToken());
         int viz = Integer.parseInt(st.nextToken());
 
         switch(faj){
@@ -88,7 +87,7 @@ public class Main2 {
          */
         String napok = scan.nextLine();
         for(int i=0; i < napok.length(); ){
-            Nap nap = Nap.valueOf(napok.substring(i, ++i));
+            Leny.Nap nap = Leny.Nap.valueOf(napok.substring(i, ++i));
             switch(nap){
                 case n:
                     versenyzok.forEach(Leny::napos);

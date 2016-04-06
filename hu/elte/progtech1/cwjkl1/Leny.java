@@ -10,6 +10,10 @@ public abstract class Leny {
     private int distance;
     private int water;
 
+    public enum Faj { h, s, l}
+
+    public enum Nap {n, f, e}
+
     /**
      * Moves the living creature forward with given distance
      * @param amount the amount to move forward in int

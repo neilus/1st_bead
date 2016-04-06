@@ -1,8 +1,15 @@
+#+title: Programozási technológia 1.
+#+subtitle: 1. beadanó
+#+author: Sana Norbert
+#+email: neilus@elte.hu
+#+toc: 2
+#+lang: hu
 
 * 1. Feladat
-Egy többnapos versenyen lények vesznek részt. *Ki nyeri a versenyt, 
+
+Egy többnapos versenyen lények vesznek részt. Ki nyeri a versenyt, 
 azaz melyik lény teszi meg a legnagyobb távolságot úgy, hogy
- közben életben marad?* Kezdetben minden lény valamennyi vízzel 
+ közben _életben marad?_ Kezdetben minden lény valamennyi vízzel 
 rendelkezik, és a megtett távolsága 0. A verseny során háromféle nap
  lehetséges: /napos/, /felhős/ és /esős/. Ezekre a különböző fajtájú 
 lények eltérő módon reagálnak vizfogyasztás és haladás szempontjából.
@@ -61,3 +68,27 @@ A végeredmény meghatározásához kell még 3 művelet:
 - él-e a lény,
 - a név illetve
 - a megtett távolság lekérdezése)
+
+
+* TODO Megoldási terv
+
+** TODO Osztályok és kapcsolataik
+
+#+begin_src plantuml :file osztaly_diagramm.png
+@startuml
+Leny <|-- Homokjaro
+Leny <|-- Lepegeto
+Leny <|-- Szivacs
+
+class Leny {
+ +living
+}
+@enduml
+#+end_src
+
+#+RESULTS:
+[[file:osztaly_diagramm.png]]
+
+* TODO A megoldáshoz szükséges típusok absztrakt leírása
+
+* TODO [#B] Tesztelési terv
