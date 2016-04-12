@@ -10,8 +10,6 @@ import java.util.List;
 import java.util.Scanner;
 import java.util.StringTokenizer;
 
-import static hu.elte.progtech1.cwjkl1.Leny.Nap.n;
-
 public class Main2 {
 
     /**

@@ -1,6 +1,6 @@
 package hu.elte.progtech1.cwjkl1;
 
-public class Szivacs extends Leny{
+public class Szivacs extends Leny {
     private final int maxWater = 20;
 
     Szivacs() {

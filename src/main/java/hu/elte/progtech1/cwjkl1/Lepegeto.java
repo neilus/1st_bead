@@ -1,6 +1,6 @@
 package hu.elte.progtech1.cwjkl1;
 
-public class Lepegeto extends Leny{
+public class Lepegeto extends Leny {
     private final int maxWater = 12;
     Lepegeto(){
         super("Lepegeto", 20);
