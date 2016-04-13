@@ -1,35 +1,30 @@
 package hu.elte.progtech1.cwjkl1;
 
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import static org.junit.Assert.*;
 import hu.elte.progtech1.cwjkl1.Homokjaro;
 
 public class HomokjaroTest {
-    final String name = "Jani";
     final int water = 3;
+    final String name = "Jani";
+    Homokjaro homokjaro, jani;
+    @Before
+    public void setUp() throws Exception {
+        homokjaro = new Homokjaro();
+        jani = new Homokjaro(name, water);
+    }
+
+    @After
+    public void tearDown() throws Exception {
+
+    }
+
     @Test
     public void getMaxWater() throws Exception {
-        Homokjaro homokjaro = new Homokjaro();
-        assertTrue(homokjaro.isLiving());
         assertEquals(homokjaro.getMaxWater(), homokjaro.getWater());
-
-        homokjaro.consumeWater(homokjaro.getMaxWater());
-        assertEquals(0, homokjaro.getWater());
-        assertFalse(homokjaro.isLiving());
-
-        homokjaro.consumeWater(1);
-        assertEquals(0, homokjaro.getWater());
-        Homokjaro jani = new Homokjaro(name, water);
-        assertEquals(name, jani.getName());
-        assertEquals(water, jani.getWater());
-        assertNotEquals(water, jani.getMaxWater());
-        assertTrue(jani.isLiving());
-
-        jani.consumeWater(jani.getMaxWater());
-        assertFalse(jani.isLiving());
-        assertNotEquals(water, jani.getWater());
-        assertEquals(0, jani.getWater());
-
+        assertNotEquals(0, homokjaro.getMaxWater());
     }
 
     @Test
