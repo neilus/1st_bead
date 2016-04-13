@@ -1,6 +1,5 @@
 package hu.elte.progtech1.cwjkl1;
 
-
 /**
  * Lény absztrakt osztály
  */
@@ -10,9 +9,35 @@ public abstract class Leny {
     private int distance;
     private int water;
 
+    protected static int[] savedWater;
+    protected static int[] consumedWater;
+    protected static int[] moveDistance;
+
+
+    public static int getSavedWater(Nap milyen) {
+        return savedWater[milyen.getValue()];
+    }
+
+    public static int getConsumedWater(Nap milyen) {
+        return consumedWater[milyen.getValue()];
+    }
+
+    public static int getMoveDistance(Nap milyen) {
+        return moveDistance[milyen.getValue()];
+    }
+
     public enum Faj { h, s, l}
 
-    public enum Nap {n, f, e}
+    public enum Nap {
+        n(0), f(1), e(2);
+        private final int value;
+        private Nap(int value) {
+            this.value = value;
+        }
+        public int getValue() {
+            return value;
+        }
+    }
 
     /**
      * Moves the living creature forward with given distance

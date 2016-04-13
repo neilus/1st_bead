@@ -1,7 +1,13 @@
 package hu.elte.progtech1.cwjkl1;
 
+import static hu.elte.progtech1.cwjkl1.Leny.Faj.l;
+
 public class Homokjaro extends Leny {
-    private final int maxWater = 8;
+    protected static final int maxWater = 8;
+
+    protected static int[] savedWater = {0, 0, 3};
+    protected static int[] consumedWater = {1, 0, 0};
+    protected static int[] moveDistance = {3, 1, 0};
 
     Homokjaro(){
         super("Homokjaro", 8);
@@ -31,7 +37,10 @@ public class Homokjaro extends Leny {
      */
     @Override
     public Leny napos() {
-        this.saveWater(0).consumeWater(1).move(3);
+        int napos = Nap.n.getValue();
+        this.saveWater(savedWater[napos])
+                .consumeWater(consumedWater[napos])
+                .move(moveDistance[napos]);
 
         return this;
     }
@@ -49,7 +58,10 @@ public class Homokjaro extends Leny {
      */
     @Override
     public Leny felhos() {
-        this.saveWater(0).consumeWater(0).move(1);
+        int felhos = Nap.f.getValue();
+        this.saveWater(savedWater[felhos])
+                .consumeWater(consumedWater[felhos])
+                .move(moveDistance[felhos]);
 
         return this;
     }
@@ -67,7 +79,10 @@ public class Homokjaro extends Leny {
      */
     @Override
     public Leny esos() {
-        this.saveWater(3).consumeWater(0).move(0);
+        int esos = Nap.e.getValue();
+        this.saveWater(savedWater[esos])
+                .consumeWater(consumedWater[esos])
+                .move(moveDistance[esos]);
 
         return null;
     }
