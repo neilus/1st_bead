@@ -3,6 +3,7 @@
 .idea/*
 .vagrant/*
 gradle/*
+gradlew.log
 *~
 \#*\#
 # Android built artifacts
@@ -35,4 +36,4 @@ local.properties
 
 
 #NDK
-obj/ 
+obj/*
