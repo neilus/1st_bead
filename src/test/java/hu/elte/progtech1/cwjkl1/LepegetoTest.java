@@ -2,6 +2,7 @@ package hu.elte.progtech1.cwjkl1;
 
 import org.junit.Before;
 import org.junit.Test;
+
 import static org.junit.Assert.*;
 import java.util.Random;
 
@@ -17,34 +18,19 @@ public class LepegetoTest {
     int hadWater, hadDistance;
     boolean wasAlive;
     Random randomGenerator;
+    LenyTest jakabTeszt;
 
     @Before
     public void setUp() throws Exception {
         randomGenerator = new Random();
         water = randomGenerator.nextInt(Lepegeto.maxWater);
         jakab = new Lepegeto(name, water);
-
-        hadWater = jakab.getWater();
-        hadDistance = jakab.getDistance();
-        wasAlive = jakab.isLiving();
-        assertTrue("A verseny kezdetekor élnie kéne", wasAlive);
+        jakabTeszt = new LenyTest();
     }
 
     @Test
     public void napos() throws Exception {
-        int naposidx = Nap.n.getValue();
-
-        jakab.napos();
-        int expWater = hadWater + Lepegeto.savedWater[naposidx] - Lepegeto.consumedWater[naposidx];
-        assertEquals("Napos időben megfelelő mennyiségű vizet fogyaszt",
-                (expWater < 0 ? 0:expWater),
-                jakab.getWater());
-
-        if(jakab.isLiving()) {
-            assertEquals("Napos időben az elvárásoknak megfelelően halad előre",
-                    (hadDistance + Lepegeto.moveDistance[naposidx]),
-                    jakab.getDistance());
-        }
+        int naposidx = jakabTeszt.elegetIszikEsHalad(jakab, Nap.n);
 
         for(int i = jakab.getWater(); i >= 0; i-= Lepegeto.consumedWater[naposidx]) {
             jakab.napos();
@@ -55,34 +41,12 @@ public class LepegetoTest {
 
     @Test
     public void felhos() throws Exception {
-        int felhosidx = Nap.f.getValue();
-
-        jakab.felhos();
-        int expWater = hadWater + Lepegeto.savedWater[felhosidx] - Lepegeto.consumedWater[felhosidx];
-        assertEquals("Napos időben megfelelő mennyiségű vizet fogyaszt",
-                (expWater < 0 ? 0:expWater),
-                jakab.getWater());
-
-        if(jakab.isLiving()) {
-            assertEquals("Felhős időben az elvárásoknak megfelelően halad előre",
-                    (hadDistance + Lepegeto.moveDistance[felhosidx]),
-                    jakab.getDistance());
-        }
+        int felhosidx = jakabTeszt.elegetIszikEsHalad(jakab, Nap.f);
     }
 
     @Test
     public void esos() throws Exception {
-        int esosidx = Nap.e.getValue();
-
-        jakab.esos();
-        int expWater = hadWater + Lepegeto.savedWater[esosidx] - Lepegeto.consumedWater[esosidx];
-        assertEquals("Esős időben megfelelő mennyiségű vizet fogyaszt",
-                (expWater > Lepegeto.maxWater ? Lepegeto.maxWater:expWater),
-                jakab.getWater());
-
-        assertEquals("Esős időben az elvárásoknak megfelelően halad előre",
-                (hadDistance + Lepegeto.moveDistance[esosidx]),
-                jakab.getDistance());
+        int esosidx = jakabTeszt.elegetIszikEsHalad(jakab,Nap.e);
 
         for(int i = jakab.getWater(); i <= jakab.getMaxWater() + 1; i += Lepegeto.savedWater[esosidx]) {
             jakab.esos();

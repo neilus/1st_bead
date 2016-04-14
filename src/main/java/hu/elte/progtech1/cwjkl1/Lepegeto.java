@@ -11,6 +11,22 @@ public class Lepegeto extends Leny {
         super("Lepegeto", 20);
     }
 
+
+    @Override
+    public int getSavingByDay(int idx) {
+        return savedWater[idx];
+    }
+
+    @Override
+    public int getConsumptionByDay(int idx) {
+        return consumedWater[idx];
+    }
+
+    @Override
+    public int getDistanceByDay(int idx) {
+        return moveDistance[idx];
+    }
+
     public Lepegeto(String name, int water) {
         super(name, water);
     }

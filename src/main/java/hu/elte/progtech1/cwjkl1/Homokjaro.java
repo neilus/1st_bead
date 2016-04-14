@@ -16,6 +16,23 @@ public class Homokjaro extends Leny {
         super(name, water);
     }
 
+
+    @Override
+    public int getSavingByDay(int idx) {
+        return savedWater[idx];
+    }
+
+    @Override
+    public int getConsumptionByDay(int idx) {
+        return consumedWater[idx];
+    }
+
+    @Override
+    public int getDistanceByDay(int idx) {
+        return moveDistance[idx];
+    }
+
+
     /**
      * @return the maximum amount of water the creature can save up
      */

@@ -11,6 +11,21 @@ public class Szivacs extends Leny {
         super("Szivacs", 30);
     }
 
+    @Override
+    public int getSavingByDay(int idx) {
+        return savedWater[idx];
+    }
+
+    @Override
+    public int getConsumptionByDay(int idx) {
+        return consumedWater[idx];
+    }
+
+    @Override
+    public int getDistanceByDay(int idx) {
+        return moveDistance[idx];
+    }
+
     public Szivacs(String name, int water){
         super(name, water);
     }

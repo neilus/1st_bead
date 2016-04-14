@@ -9,11 +9,6 @@ public abstract class Leny {
     private int distance;
     private int water;
 
-    protected static int[] savedWater;
-    protected static int[] consumedWater;
-    protected static int[] moveDistance;
-
-
     public enum Faj { h, s, l}
 
     public enum Nap {
@@ -26,6 +21,10 @@ public abstract class Leny {
             return value;
         }
     }
+
+    public abstract int getSavingByDay(int idx);
+    public abstract int getConsumptionByDay(int idx);
+    public abstract int getDistanceByDay(int idx);
 
     /**
      * Moves the living creature forward with given distance

@@ -4,6 +4,7 @@ import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+import hu.elte.progtech1.cwjkl1.Leny.Nap;
 import static org.junit.Assert.*;
 
 /**
@@ -14,8 +15,24 @@ public class LenyTest {
     final int testWater = 3;
     final int testMaxWater = 21;
     TestElek tesztLeny;
+    final String[] idojaras = {"Napos", "Felhős", "Esős"};
 
     public class TestElek extends Leny {
+
+        @Override
+        public int getSavingByDay(int idx) {
+            return 0;
+        }
+
+        @Override
+        public int getConsumptionByDay(int idx) {
+            return 0;
+        }
+
+        @Override
+        public int getDistanceByDay(int idx) {
+            return 0;
+        }
 
         /**
          * Constructs a Leny abstract object
@@ -26,6 +43,7 @@ public class LenyTest {
         public TestElek(String name, int water) {
             super(name, water);
         }
+
 
         @Override
         int getMaxWater() {
@@ -94,5 +112,41 @@ public class LenyTest {
     public void setUp() throws Exception {
         tesztLeny = new TestElek(testName, testWater);
 
+    }
+
+    public int elegetIszikEsHalad(Leny jakab, Nap milyen) {
+        int idx = milyen.getValue();
+
+        int hadWater = jakab.getWater();
+        int hadDistance = jakab.getDistance();
+
+        assertTrue("A verseny kezdetekor élnie kéne", jakab.isLiving());
+
+        switch (idx) {
+            case 0:
+                jakab.napos();
+                break;
+            case 1:
+                jakab.felhos();
+                break;
+            case 2:
+                jakab.esos();
+                break;
+            default:
+                assertTrue("Csak Napos, Felhős vagy esős napok a megengedettek",
+                        (idx < 3) && (idx >= 0));
+        }
+        int expWater = hadWater + jakab.getSavingByDay(idx) - jakab.getConsumptionByDay(idx);
+        assertEquals(idojaras[idx] + " időben megfelelő mennyiségű vizet fogyaszt",
+                (expWater < 0 ? 0:expWater),
+                jakab.getWater());
+
+        if(jakab.isLiving()) {
+            assertEquals(idojaras[idx] + " időben az elvárásoknak megfelelően halad előre",
+                    (hadDistance + jakab.getDistanceByDay(idx)),
+                    jakab.getDistance());
+        }
+
+        return idx;
     }
 }

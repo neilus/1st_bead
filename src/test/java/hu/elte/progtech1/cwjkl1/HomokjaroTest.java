@@ -16,34 +16,19 @@ public class HomokjaroTest {
     int hadWater, hadDistance;
     boolean wasAlive;
     Random randomGenerator;
+    LenyTest jakabTeszt;
 
     @Before
     public void setUp() throws Exception {
         randomGenerator = new Random();
         water = randomGenerator.nextInt(Homokjaro.maxWater);
         jakab = new Homokjaro(name, water);
-
-        hadWater = jakab.getWater();
-        hadDistance = jakab.getDistance();
-        wasAlive = jakab.isLiving();
-        assertTrue("A verseny kezdetekor élnie kéne", wasAlive);
+        jakabTeszt = new LenyTest();
     }
 
     @Test
     public void napos() throws Exception {
-        int naposidx = Nap.n.getValue();
-
-        jakab.napos();
-        int expWater = hadWater + Homokjaro.savedWater[naposidx] - Homokjaro.consumedWater[naposidx];
-        assertEquals("Napos időben megfelelő mennyiségű vizet fogyaszt",
-                (expWater < 0 ? 0:expWater),
-                jakab.getWater());
-
-        if(jakab.isLiving()) {
-            assertEquals("Napos időben az elvárásoknak megfelelően halad előre",
-                    (hadDistance + Homokjaro.moveDistance[naposidx]),
-                    jakab.getDistance());
-        }
+        int naposidx = jakabTeszt.elegetIszikEsHalad(jakab, Nap.n);
 
         for(int i = jakab.getWater(); i >= 0; i-= Homokjaro.consumedWater[naposidx]) {
             jakab.napos();
@@ -54,35 +39,12 @@ public class HomokjaroTest {
 
     @Test
     public void felhos() throws Exception {
-        int felhosidx = Nap.f.getValue();
-
-        jakab.felhos();
-
-        assertEquals("Felhős időben megfelelő mennyiségű vizet fogyaszt",
-                (hadWater + Homokjaro.savedWater[felhosidx] - Homokjaro.consumedWater[felhosidx]),
-                jakab.getWater());
-
-        if(jakab.isLiving()) {
-            assertEquals("Felhős időben az elvárásoknak megfelelően halad előre",
-                    (hadDistance + Homokjaro.moveDistance[felhosidx]),
-                    jakab.getDistance());
-        }
+        int felhosidx = jakabTeszt.elegetIszikEsHalad(jakab, Nap.f);
     }
 
     @Test
     public void esos() throws Exception {
-        int esosidx = Nap.e.getValue();
-
-        jakab.esos();
-        int expWater = hadWater + Homokjaro.savedWater[esosidx] - Homokjaro.consumedWater[esosidx];
-        assertEquals("Esős időben megfelelő mennyiségű vizet fogyaszt",
-                (expWater > Homokjaro.maxWater ? Homokjaro.maxWater:expWater),
-                jakab.getWater());
-
-        assertEquals("Esős időben az elvárásoknak megfelelően halad előre",
-                (hadDistance + Homokjaro.moveDistance[esosidx]),
-                jakab.getDistance());
-
+        int esosidx = jakabTeszt.elegetIszikEsHalad(jakab, Nap.e);
         for(int i = jakab.getWater(); i <= jakab.getMaxWater() + 1; i += Homokjaro.savedWater[esosidx]) {
             jakab.esos();
         }
