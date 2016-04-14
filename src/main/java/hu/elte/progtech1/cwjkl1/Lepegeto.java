@@ -1,7 +1,12 @@
 package hu.elte.progtech1.cwjkl1;
 
 public class Lepegeto extends Leny {
-    private final int maxWater = 12;
+    protected static final int maxWater = 12;
+
+    protected static int[] savedWater =     {0, 0, 3};
+    protected static int[] consumedWater =  {2, 1, 0};
+    protected static int[] moveDistance =   {1, 2, 1};
+
     Lepegeto(){
         super("Lepegeto", 20);
     }

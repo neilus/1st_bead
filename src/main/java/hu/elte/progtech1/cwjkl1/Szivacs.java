@@ -1,7 +1,11 @@
 package hu.elte.progtech1.cwjkl1;
 
 public class Szivacs extends Leny {
-    private final int maxWater = 20;
+    protected static final int maxWater = 20;
+
+    protected static int[] savedWater =     {0, 0, 6};
+    protected static int[] consumedWater =  {4, 1, 0};
+    protected static int[] moveDistance =   {0, 1, 3};
 
     Szivacs() {
         super("Szivacs", 30);

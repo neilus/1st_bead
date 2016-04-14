@@ -14,18 +14,6 @@ public abstract class Leny {
     protected static int[] moveDistance;
 
 
-    public static int getSavedWater(Nap milyen) {
-        return savedWater[milyen.getValue()];
-    }
-
-    public static int getConsumedWater(Nap milyen) {
-        return consumedWater[milyen.getValue()];
-    }
-
-    public static int getMoveDistance(Nap milyen) {
-        return moveDistance[milyen.getValue()];
-    }
-
     public enum Faj { h, s, l}
 
     public enum Nap {

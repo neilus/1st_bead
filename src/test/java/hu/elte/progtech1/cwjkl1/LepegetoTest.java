@@ -2,17 +2,18 @@ package hu.elte.progtech1.cwjkl1;
 
 import org.junit.Before;
 import org.junit.Test;
-
 import static org.junit.Assert.*;
+import java.util.Random;
 
 import hu.elte.progtech1.cwjkl1.Leny.Nap;
 
-import java.util.Random;
-
-public class HomokjaroTest {
+/**
+ * Created by neilus on 4/14/16.
+ */
+public class LepegetoTest {
     int water;
     final String name = "Gipsz";
-    Homokjaro jakab;
+    Lepegeto jakab;
     int hadWater, hadDistance;
     boolean wasAlive;
     Random randomGenerator;
@@ -20,8 +21,8 @@ public class HomokjaroTest {
     @Before
     public void setUp() throws Exception {
         randomGenerator = new Random();
-        water = randomGenerator.nextInt(Homokjaro.maxWater);
-        jakab = new Homokjaro(name, water);
+        water = randomGenerator.nextInt(Lepegeto.maxWater);
+        jakab = new Lepegeto(name, water);
 
         hadWater = jakab.getWater();
         hadDistance = jakab.getDistance();
@@ -34,18 +35,18 @@ public class HomokjaroTest {
         int naposidx = Nap.n.getValue();
 
         jakab.napos();
-        int expWater = hadWater + Homokjaro.savedWater[naposidx] - Homokjaro.consumedWater[naposidx];
+        int expWater = hadWater + Lepegeto.savedWater[naposidx] - Lepegeto.consumedWater[naposidx];
         assertEquals("Napos időben megfelelő mennyiségű vizet fogyaszt",
                 (expWater < 0 ? 0:expWater),
                 jakab.getWater());
 
         if(jakab.isLiving()) {
             assertEquals("Napos időben az elvárásoknak megfelelően halad előre",
-                    (hadDistance + Homokjaro.moveDistance[naposidx]),
+                    (hadDistance + Lepegeto.moveDistance[naposidx]),
                     jakab.getDistance());
         }
 
-        for(int i = jakab.getWater(); i >= 0; i-= Homokjaro.consumedWater[naposidx]) {
+        for(int i = jakab.getWater(); i >= 0; i-= Lepegeto.consumedWater[naposidx]) {
             jakab.napos();
         }
         assertFalse("Ha elég sokáig masíroz napos időben szomjan kell haljon",
@@ -57,14 +58,14 @@ public class HomokjaroTest {
         int felhosidx = Nap.f.getValue();
 
         jakab.felhos();
-
-        assertEquals("Felhős időben megfelelő mennyiségű vizet fogyaszt",
-                (hadWater + Homokjaro.savedWater[felhosidx] - Homokjaro.consumedWater[felhosidx]),
+        int expWater = hadWater + Lepegeto.savedWater[felhosidx] - Lepegeto.consumedWater[felhosidx];
+        assertEquals("Napos időben megfelelő mennyiségű vizet fogyaszt",
+                (expWater < 0 ? 0:expWater),
                 jakab.getWater());
 
         if(jakab.isLiving()) {
             assertEquals("Felhős időben az elvárásoknak megfelelően halad előre",
-                    (hadDistance + Homokjaro.moveDistance[felhosidx]),
+                    (hadDistance + Lepegeto.moveDistance[felhosidx]),
                     jakab.getDistance());
         }
     }
@@ -74,16 +75,16 @@ public class HomokjaroTest {
         int esosidx = Nap.e.getValue();
 
         jakab.esos();
-        int expWater = hadWater + Homokjaro.savedWater[esosidx] - Homokjaro.consumedWater[esosidx];
+        int expWater = hadWater + Lepegeto.savedWater[esosidx] - Lepegeto.consumedWater[esosidx];
         assertEquals("Esős időben megfelelő mennyiségű vizet fogyaszt",
-                (expWater > Homokjaro.maxWater ? Homokjaro.maxWater:expWater),
+                (expWater > Lepegeto.maxWater ? Lepegeto.maxWater:expWater),
                 jakab.getWater());
 
         assertEquals("Esős időben az elvárásoknak megfelelően halad előre",
-                (hadDistance + Homokjaro.moveDistance[esosidx]),
+                (hadDistance + Lepegeto.moveDistance[esosidx]),
                 jakab.getDistance());
 
-        for(int i = jakab.getWater(); i <= jakab.getMaxWater() + 1; i += Homokjaro.savedWater[esosidx]) {
+        for(int i = jakab.getWater(); i <= jakab.getMaxWater() + 1; i += Lepegeto.savedWater[esosidx]) {
             jakab.esos();
         }
         assertEquals("ha elég sokat marad esőben egy idő után már nem tud több vizet elraktározni",

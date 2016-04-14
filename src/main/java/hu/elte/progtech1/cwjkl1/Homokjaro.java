@@ -5,9 +5,9 @@ import static hu.elte.progtech1.cwjkl1.Leny.Faj.l;
 public class Homokjaro extends Leny {
     protected static final int maxWater = 8;
 
-    protected static int[] savedWater = {0, 0, 3};
-    protected static int[] consumedWater = {1, 0, 0};
-    protected static int[] moveDistance = {3, 1, 0};
+    protected static int[] savedWater =     {0, 0, 3};
+    protected static int[] consumedWater =  {1, 0, 0};
+    protected static int[] moveDistance =   {3, 1, 0};
 
     Homokjaro(){
         super("Homokjaro", 8);

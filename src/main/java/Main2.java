@@ -101,7 +101,7 @@ public class Main2 {
             System.out.println(versenyzok);
         }
 
-        // ToDo: hatarozzuk meg es irjuk ki a nyertes nevet
+        // Done: hatarozzuk meg es irjuk ki a nyertes nevet
         int max = 0;
         for(int i = 1; i < versenyzok.size(); i++){
             if ( versenyzok.get(i).getDistance() > versenyzok.get(max).getDistance() ) {
