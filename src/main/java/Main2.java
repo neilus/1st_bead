@@ -75,7 +75,7 @@ public class Main2 {
             versenyzok.add(versenyzo(scan.nextLine()));
         }
 
-        System.out.println(versenyzok);
+//        System.out.println(versenyzok);
 
         /*
         Done: az utolso sorban a verseny napjai szerepelnek karaktersorozatban:
@@ -97,8 +97,8 @@ public class Main2 {
                     versenyzok.forEach(Leny::esos);
                     break;
             }
-            System.out.println("Az allas a " + i + " napon:");
-            System.out.println(versenyzok);
+//            System.out.println("Az allas a " + i + " napon:");
+//            System.out.println(versenyzok);
         }
 
         // Done: hatarozzuk meg es irjuk ki a nyertes nevet
