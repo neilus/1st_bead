@@ -136,7 +136,10 @@ public class LenyTest {
                 assertTrue("Csak Napos, Felhős vagy esős napok a megengedettek",
                         (idx < 3) && (idx >= 0));
         }
+
         int expWater = hadWater + jakab.getSavingByDay(idx) - jakab.getConsumptionByDay(idx);
+        expWater = (expWater > jakab.getMaxWater())? jakab.getMaxWater():expWater;
+
         assertEquals(idojaras[idx] + " időben megfelelő mennyiségű vizet fogyaszt",
                 (expWater < 0 ? 0:expWater),
                 jakab.getWater());
