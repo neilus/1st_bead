@@ -42,7 +42,7 @@ task (robot, type: JavaExec) {
     args = [
             '--outputdir',
             './build/reports/robot',
-            './src/test/robot/hello.robot'
+            './src/test/robot/'
     ]
 }
 

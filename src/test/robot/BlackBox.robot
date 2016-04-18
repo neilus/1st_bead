@@ -1,4 +1,5 @@
 *** Settings ***
+Documentation  Tesztelés különböző inputokkal
 Library  OperatingSystem
 Library  String
 
