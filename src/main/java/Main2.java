@@ -41,10 +41,10 @@ public class Main2 {
         //Done: input inicializalasa
 //        Scanner scan = new Scanner(System.in);
         if (args.length != 1) {
-            System.err.println("ERROR: pontosan egy paramétert várok:");
-            System.err.println("ERROR: az input fájl nevét:");
+            System.err.println("ERROR: pontosan egy paramétert várok,");
+            System.err.println("ERROR: az input fájl nevét");
             System.err.println("ERROR: pl:");
-            System.err.println("ERROR: $ java Main2 input1.txt");
+            System.err.println("ERROR: $ java -jar 1st_bead.jar input1.txt");
 
             System.exit(1);
         }

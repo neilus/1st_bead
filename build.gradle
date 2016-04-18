@@ -33,6 +33,12 @@ dependencies {
     robot 'org.robotframework:robotframework:3.0'
 }
 
+jar {
+  manifest {
+    attributes 'Main-Class': 'Main2'
+  }
+}
+
 task (robot, type: JavaExec) {
     group   'Verification'
     description 'Runs blackbox tests'
@@ -40,12 +46,17 @@ task (robot, type: JavaExec) {
     classpath = configurations.compile + sourceSets.main.runtimeClasspath
     classpath += configurations.robot
     args = [
-            '--outputdir',
-            './build/reports/robot',
-            './src/test/robot/'
+            '-W', '72',
+            '--outputdir', './build/reports/robot',
+            './src/test/robot/BlackBox.robot'
     ]
 }
 
 test.setFinalizedBy(['robot'])
-//check.dependsOn robot
+build.doLast {
+  println '\n'
+  println 'A Unit teszt eredmények: ./build/reports/tests/index.html'
+  println 'A Blackbox teszt eredmények: ./build/reports/robot/report.html'
+  println 'A futtatható bináris (JAR) csomag: ./build/libs/1st_bead.jar'
+}
 defaultTasks 'build'

@@ -5,6 +5,7 @@ Library  String
 
 *** Variables ***
 ${classpath}=   ./build/classes/main
+${inputpath}=   ./src/test/input/
 ${main}=   Main2
 *** Test Cases ***
 Without input
@@ -12,7 +13,7 @@ Without input
     [Tags]  invalid     Main2   noparams    noinput
     ${output}=  Run     java -classpath ${classpath} ${main}
 #    Log To Console  ${output}
-    Should Contain  ${output}   ERROR: pontosan egy paramétert várok:
+    Should Contain  ${output}   ERROR: pontosan egy paramétert várok
 
 File does not exist
     [Documentation]  Nem létező fájlt adva paraméternek
@@ -22,23 +23,23 @@ File does not exist
     Should Contain  ${output}    No such file or directory
 
 Run input1
-    [Documentation]  Első input fájllal futtatva
+    [Documentation]  Vandor kell, hogy nyerje a versenyt
     [Tags]  input1   Main2
     ${output}=  Run Main2   input1.txt
-#    Log To Console      ${output}
+#    Log To Console      \n${output}
     Should Contain  ${output}   Vandor
 
 Run input2
-    [Documentation]  Második input fájllal futtatva
+    [Documentation]  Minden lény el kell pusztuljon a verseny végére
     [Tags]  input2  Main2
     ${output}=  Run Main2  input2.txt
-#    Log To Console      ${output}
+#    Log To Console      \n${output}
     Should Contain  ${output}   ;(
 
 *** Keywords ***
 Run Main2
     [Documentation]     Runs the Main2 application with the given inputfile as a parameter
     [Arguments]     ${inputfile}
-    ${output}=      Run  java -classpath ${classpath} ${main} ./${inputfile}
+    ${output}=      Run  java -classpath ${classpath} ${main} ${inputpath}${inputfile}
     [Return]  ${output}
 
