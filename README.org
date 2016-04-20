@@ -3,11 +3,8 @@
 #+author: Sana Norbert
 #+email: neilus@elte.hu
 
-
 #+language: hu
-
 #+toc: 2
-
 
 
 * 1. Feladat
@@ -348,7 +345,12 @@ Generált/build-elt tartalom:
 
 #+end_src
 
-Továbbá [[https://www.virtualbox.org/][VirtualBox]] és [[https://www.vagrantup.com/][Vagrant]] eszközöket használtama fejlesztői (és teszt környezet) virtualizálásához valamint az automatizált előállításához és a szükséges szoftverek (Oracle Java 8, Jython és ROBOT) telepítéséhez. A programot 64 bites Ubuntu 14.04 LTS, valamint OS X 10.10 operációs rendszereken teszteltem. Egy szükséges ubuntu környezetet automatizálva előállít, elindít és lebuildeli, teszteli és futtatja a programot a könyvtárban kiadott alábbi parancs
+** Tesztkörnyezet
+
+[[https://www.virtualbox.org/][VirtualBox]] és [[https://www.vagrantup.com/][Vagrant]] eszközöket használtam a teszt környezet virtualizálásához, automatizált előállításához.
+A programot 64 bites Ubuntu 14.04 LTS, valamint OS X 10.10 operációs rendszereken teszteltem. 
+A vagrant es virtualbox eszközök meglétekor a =vagrant up= parancsot először kiadva a project könyvtárban az letölt mindn szükséges virtuális gép image-et és inicializálja a Vagrantfile-ban található shell scriptek segítségével a teszteléshez és fejlesztéshez használt 64 bites Ubuntu 14.04 LTS linux rendszert, Oracle JDK 8, Jython és ROBOT framework.
+Miután elkészült a vagrant a virtuális gépen utolsó lépésként kiadja a =./gradlew= parancsot, mely lebuildeli, teszteli és futtatja a projectet.
 
 #+begin_src sh
 [ neilus@Lisa 1st_bead (master=) ]$ vagrant up # elinditja a virtuális gépet és a gradle taskokat
@@ -418,5 +420,43 @@ A fajra vonatkozó karakterisztikákat tárolja (maxWater, savedWater, consumedW
 
 ** TODO White-Box unit tesztek
 A White-Box tesztekhez a [[http://junit.org/junit4/][JUnit]] frameworköt használtam, mely a tesztek eredményéről html formátumú jelentést készít.
-** TODO Black-Box acceptance tesztek
+
+** DONE Black-Box acceptance tesztek
 A Black-Box tesztek implementálásához a [[http://robotframework.org/][ROBOT]] frameworköt használtam, mely a tesztek eredményeiről és futásáról html formátumú jelentést készít.
+
+A részletes teszteseteket bele értve a várt kimeneteket is a =./src/test/robot/BlackBox.robot= textfájl tartalmazza.
+A teszteléshez használt input fájlok =./src/test/input= könyvtár alatt találhatóak.
+
+A következő eseteket teszteltem:
+
+*** Nincs Input
+Ha nem kap input fájlt hibával tér vissza az alkalmazás és egy rövid instrukcióval a standard error-ra.
+
+*** Nem létező fájl
+Nem létező fájl esetén Exceptiont dobunk ami jelzi, hogy a megadott fájl nem létezik.
+
+*** Szárazság
+Elég hosszú száraz napos idő esetén minden versenyző elpusztul egy idő után.
+
+*** Holtverseny
+Ha holtverseny lépne fel, akkor a listában az első versenyző nyer.
+Ehhez két azonos fajú versenyzőt versenyeztettem, úgy hogy ugyanannyi vízzel indultak.
+
+*** Többletvíz
+Ha az egyik versenyző több vizet kap induláskor mint amennyit el tud raktározni, a fajtája, azzal nem tesz szert előnyre a saját fajtájával szemben.
+Ehhez felhasználtam azt, hogy holtverseny esetén is a listában az első kerül ki győztesnek. Ebből következtethetünk arra, hogy a többlet vizet eltárolni nem tudó azonos fajú versenytárs nem tudja megelőzni őt a veseny során.
+
+*** Napos
+Napos időben a Homokjáró faj a leggyorsabb.
+Elegendő vízzel indul minden fajból egy-egy résztvevő a versenyen és csak napos időben versenyeznek.
+
+*** Felhős
+Felhős időben a Lépegető faj a leggyorsabb.
+Hasonlóan a Napos teszttel, mindenki elegendő vízzel indul a versenyen, de most csak felhős időben versenyeznek.
+
+*** Esős
+Esős időben a Szivacs faj a leggyorsabb.
+Hasonlóan az előző két esethez minden résztvevő elegendő vízzel indul és csak esős időben versenyeznek.
+
+*** Sample
+A feladatkiírásban szereplő példainput.

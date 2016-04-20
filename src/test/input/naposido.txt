@@ -1,0 +1,6 @@
+3
+Homokjáró h 8
+Szivacs   s 9
+Lépegető  l 8
+nn
+
