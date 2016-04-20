@@ -418,14 +418,11 @@ A fajra vonatkozó karakterisztikákat tárolja (maxWater, savedWater, consumedW
 
 * TODO Tesztelési terv
 
-** TODO White-Box unit tesztek
-A White-Box tesztekhez a [[http://junit.org/junit4/][JUnit]] frameworköt használtam, mely a tesztek eredményéről html formátumú jelentést készít.
-
 ** DONE Black-Box acceptance tesztek
 A Black-Box tesztek implementálásához a [[http://robotframework.org/][ROBOT]] frameworköt használtam, mely a tesztek eredményeiről és futásáról html formátumú jelentést készít.
 
-A részletes teszteseteket bele értve a várt kimeneteket is a =./src/test/robot/BlackBox.robot= textfájl tartalmazza.
-A teszteléshez használt input fájlok =./src/test/input= könyvtár alatt találhatóak.
+A részletes teszteseteket bele értve a várt kimeneteket is a [[./src/test/robot/BlackBox.robot]] textfájl tartalmazza.
+A teszteléshez használt input fájlok [[./src/test/input]] könyvtár alatt találhatóak.
 
 A következő eseteket teszteltem:
 
