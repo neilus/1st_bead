@@ -22,6 +22,7 @@ repositories {
 
 configurations {
     robot
+    compile
 }
 // In this section you declare the dependencies for your production and test code
 dependencies {
@@ -52,11 +53,44 @@ task (robot, type: JavaExec) {
     ]
 }
 
-test.setFinalizedBy(['robot'])
-build.doLast {
-  println '\n'
-  println 'A Unit teszt eredmények: ./build/reports/tests/index.html'
-  println 'A Blackbox teszt eredmények: ./build/reports/robot/report.html'
-  println 'A futtatható bináris (JAR) csomag: ./build/libs/1st_bead.jar'
+run.doFirst {
+    println ':no input'
 }
-defaultTasks 'build'
+
+task (input1, type: JavaExec) {
+    group   'Application'
+//    dependencies 'assemble'
+    description 'Run the assembled jar with input1.txt'
+    main = 'Main2'
+    classpath = sourceSets.main.runtimeClasspath + configurations.compile
+    args = ['./src/test/input/input1.txt']
+
+
+}
+
+task (input2, type: JavaExec) {
+    group   'Application'
+    description 'Run the assembled jar with input2.txt'
+    main = 'Main2'
+    classpath = sourceSets.main.runtimeClasspath
+    args = ['./src/test/input/input2.txt']
+
+}
+
+test.setFinalizedBy(['robot'])
+run.setFinalizedBy(['input1', 'input2'])
+//build.setFinalizedBy(['run'])
+build.doLast {
+    println '\n'
+    println 'A Unit teszt eredmények: ./build/reports/tests/index.html'
+    println 'A Blackbox teszt eredmények: ./build/reports/robot/report.html'
+    println 'A futtatható bináris (JAR) csomag: ./build/libs/1st_bead.jar'
+}
+
+task buildNrun {
+    group 'Application'
+    description 'Build and run the Application with samples'
+}
+buildNrun.setFinalizedBy(['build', 'input1', 'input2'])
+
+defaultTasks 'buildNrun'

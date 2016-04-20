@@ -75,7 +75,7 @@ A végeredmény meghatározásához kell még 3 művelet:
 
 * TODO [#A] Megoldási terv
 
-** TODO Osztályok és kapcsolataik
+** DONE Osztályok és kapcsolataik
 
 #+begin_src plantuml :file osztaly_diagramm.png :exports results
 @startuml
@@ -186,6 +186,66 @@ class Szivacs {
 #+RESULTS:
 [[osztaly_diagramm.png]]
 
-* TODO [#B] A megoldáshoz szükséges típusok absztrakt leírása
+
+* DONE [#B] A megoldáshoz szükséges típusok absztrakt leírása
+
+** Leny absztrakt osztály
+
+A Leny osztály tartalmazza a leszármaztatott osztályok működési logikájának vázát, valamint további segéd-függvényeket (move, saveWater, consumeWater, die) és emun adatszerkezeteket (Nap, Faj).
+
+*** Egyedállapotot tartalmazó attribútumok
+Az attribútumok értékeit a hozzájuk tartozó getter (isser) metódusokkal lehet lekérdezni az objektumtól, melyek értékeit a konstruktor inicializálja és a napoknak megfelelően változhat a verseny során.
+
+**** living
+Ez a boolean változó tárolja azt az információt, hogy az objektum példány éppen él-e, aminek következtében még versenyben lehet vagy sem, illetve tud-e még mozogni, vizet fogyasztani, raktározni.
+
+Ezt a konstruktorból inicializáljuk /true/ értékkel és a [[die]] metódus állítja /false/-ra.
+
+**** name
+Ez az egyedpéldány nevét tartalmazza, melyet a konstruktorban van lehetőségünk beállítani.
+
+**** distance
+A verseny során megtett távolságot tárolja.
+
+
+*** Segédfüggvények
+Ezeket a segédfüggvényeket a leszármazott osztályok használják, legfőképp az absztrakt metódusok implementációjának egyszerűsítésére szolgálnak.
+
+**** move
+A kapott int paraméter értékével mozgatja előre a lényünket.
+
+**** saveWater
+A kapott int paraméternyi mennyiségű vizet próbál meg elraktározni a lényünk számára. Ha a lény a paramétereinek megfelően elraktározta a maximálisan elraktározható vízmennyiséget, akkor nem raktároz el több vizet.
+
+**** consumeWater
+A kapott int paraméternyi vizet fogyaszt el a lény raktározott vizéből. Ha elfogyott a vize, a [[die]] metódussal megöli a lényünket.
+
+**** die
+Megöli a lényünket, [[living]] attribútumának false-ra állításával.
+     
+*** Absztrakt metódusok
+Ezek a metódusok a leszármazott osztályokban vannak implementálva különféle képpen tükrözve az adott faj paramétereit.
+**** getMaxWater
+Megmondja mennyi a maximálisan elraktározható víz a faj számára.
+**** napos
+Lejátsza a fajnak napos napi magatartását.
+**** felhos
+Lejátsza a fajnak felhős napi magatartását.
+**** esos
+Lejátsza a fajnak esős napi magatartását.
+**** getSavingByDay, getConsumptionByDay, getDistanceByDay
+A megadott [[Nap]]ra vonatkozó adott fajra vonatkozó karakterisztikát lehet vele lekérdezni.
+*** Enum Nap
+A különböző napokra (napos, felhős, esős) vonatkozó konstansok tárolására szolgál, valamint egyszerűsíti a szekvenciális input fájlból való adatbeolvasást. A getValue() metódusa segítségével lehet egyszerűen lekérni a napnak megfelelő int értéket, mely pl a fajra vonatkozó karakterisztikák lekérdezésénél jön kapóra.
+*** Enum Faj
+A különböző fajok megkülönböztetésére szolgál az input fájlból való olvasáskor hasznos.
+
+** DONE Homokjaro, Lepegeto es Szivacs osztályok
+A fajra vonatkozó karakterisztikákat tárolja (maxWater, savedWater, consumedWater, moveDistance), valamint a különböző napokra jellemző faji magatartást.
 
 * TODO [#B] Tesztelési terv
+
+** TODO White-Box unit tesztek
+A White-Box tesztekhez a [[http://junit.org/junit4/][JUnit]] frameworköt használtam, mely a tesztek eredményéről html formátumú jelentést készít.
+** TODO Black-Box acceptance tesztek
+A Black-Box tesztek implementálásához a [[http://robotframework.org/][ROBOT]] frameworköt használtam, mely a tesztek eredményeiről és futásáról html formátumú jelentést készít.
