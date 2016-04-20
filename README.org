@@ -72,7 +72,7 @@ A végeredmény meghatározásához kell még 3 művelet:
 - a megtett távolság lekérdezése)
 
 
-* DONE Megoldási terv
+* Megoldási terv
 
 ** Osztályok és kapcsolataik
 
@@ -190,72 +190,19 @@ A beadandó során a [[http://gradle.org/][gradle]] build systemet használtam, 
 
 #+begin_src sh
 [ neilus@Lisa 1st_bead (master=) ]$ ./gradlew 
-:buildNrun UP-TO-DATE
-:compileJava
-Download https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.18/slf4j-api-1.7.18.pom
-Download https://repo1.maven.org/maven2/org/slf4j/slf4j-parent/1.7.18/slf4j-parent-1.7.18.pom
-Download https://repo1.maven.org/maven2/org/slf4j/slf4j-api/1.7.18/slf4j-api-1.7.18.jar
-:processResources UP-TO-DATE
-:classes
-:jar
-:startScripts
-:distTar
-:distZip
-:assemble
-:compileTestJava
-:processTestResources UP-TO-DATE
-:testClasses
-:test
-:robot
-Download https://repo1.maven.org/maven2/org/robotframework/robotframework/3.0/robotframework-3.0.pom
-Download https://repo1.maven.org/maven2/org/robotframework/robotframework/3.0/robotframework-3.0.jar
-========================================================================
-BlackBox :: Tesztelés különböző inputokkal                              
-========================================================================
-Without input :: paraméter nélkül futtatva                      | PASS |
-------------------------------------------------------------------------
-File does not exist :: Nem létező fájlt adva paraméternek       | PASS |
-------------------------------------------------------------------------
-Run input1 :: Vandor kell, hogy nyerje a versenyt               | PASS |
-------------------------------------------------------------------------
-Run input2 :: Minden lény el kell pusztuljon a verseny végére   | PASS |
-------------------------------------------------------------------------
-BlackBox :: Tesztelés különböző inputokkal                      | PASS |
-4 critical tests, 4 passed, 0 failed
-4 tests total, 4 passed, 0 failed
-========================================================================
-Output:  /Users/neilus/Development/elte/progtech1/1st_bead/build/reports/robot/output.xml
-Log:     /Users/neilus/Development/elte/progtech1/1st_bead/build/reports/robot/log.html
-Report:  /Users/neilus/Development/elte/progtech1/1st_bead/build/reports/robot/report.html
-:check
-:build
-
-
-A Unit teszt eredmények: ./build/reports/tests/index.html
-A Blackbox teszt eredmények: ./build/reports/robot/report.html
-A futtatható bináris (JAR) csomag: ./build/libs/1st_bead.jar
-:input1
-A nyertes versenyzo neve: Vandor
-:input2
-sajnos minden versenyzo meghalt. ;(
-
-BUILD SUCCESSFUL
-
-Total time: 28.993 secs
-
 #+end_src
 
 ** Könyvtárstruktúra
 
 - gradlew: gradle wrapper build script
 - gradlew.bat: gradle wrapper build script windowshoz
-- build.gradle: a gradle build fájl, java függőségekkel és run taskokkal
-- Vagrantfile: a teszt infrastruktúrát definiáló vagrant konfiguráció
+- [[build.gradle]]: a gradle build fájl, java függőségekkel és run taskokkal
+- [[Vagrantfile]]: a teszt infrastruktúrát definiáló vagrant konfiguráció
 - build/classes: lefrodított Java binárisok
-- src/main/java: a feladatot megoldó programkód
-- src/test/input: a tesztelés során használt input fájlok
-- src/test/java: JUnit teszt kódok
-- src/test/robot: A blackbox teszteket tartalmazó robot kód
+- [[src/main/java]]: a feladatot megoldó programkód
+- [[src/test/input]]: a tesztelés során használt input fájlok
+- [[src/test/java]]: JUnit teszt kódok
+- [[src/test/robot]]: A blackbox teszteket tartalmazó robot kód
 
 Generált/build-elt tartalom:
 - build/libs: A project futtatható verziója JAR package formátumban
@@ -263,87 +210,6 @@ Generált/build-elt tartalom:
 - build/reports/tests: Unit tesztek eredményei
 
 
-#+begin_src sh
-[ neilus@Lisa 1st_bead (master=) ]$ tree
-.
-├── README.org
-├── Vagrantfile
-├── build
-│   ├── classes
-│   │   ├── main
-│   │   │   ├── Main2.class
-│   │   │   └── hu
-│   │   │       └── elte
-│   │   │           └── progtech1
-│   │   │               └── cwjkl1
-│   │   │                   ├── Homokjaro.class
-│   │   │                   ├── Leny$Faj.class
-│   │   │                   ├── Leny$Nap.class
-│   │   │                   ├── Leny.class
-│   │   │                   ├── Lepegeto.class
-│   │   │                   └── Szivacs.class
-│   │   └── test
-│   │       └── hu
-│   │           └── elte
-│   │               └── progtech1
-│   │                   └── cwjkl1
-│   │                       ├── HomokjaroTest.class
-│   │                       ├── LenyTest$TestElek.class
-│   │                       ├── LenyTest.class
-│   │                       ├── LepegetoTest.class
-│   │                       └── SzivacsTest.class
-...
-│   ├── libs
-│   │   └── 1st_bead.jar
-│   ├── reports
-│   │   ├── robot
-│   │   │   ├── log.html
-│   │   │   ├── output.xml
-│   │   │   └── report.html
-│   │   └── tests
-...
-│   │       ├── index.html
-...
-├── build.gradle
-├── gradle
-│   └── wrapper
-│       ├── gradle-wrapper.jar
-│       └── gradle-wrapper.properties
-├── gradlew
-├── gradlew.bat
-├── gradlew.log
-├── osztaly_diagramm.png
-├── settings.gradle
-└── src
-    ├── main
-    │   └── java
-    │       ├── Main1.java
-    │       ├── Main2.java
-    │       └── hu
-    │           └── elte
-    │               └── progtech1
-    │                   └── cwjkl1
-    │                       ├── Homokjaro.java
-    │                       ├── Leny.java
-    │                       ├── Lepegeto.java
-    │                       └── Szivacs.java
-    └── test
-        ├── input
-        │   ├── input1.txt
-        │   └── input2.txt
-        ├── java
-        │   └── hu
-        │       └── elte
-        │           └── progtech1
-        │               └── cwjkl1
-        │                   ├── HomokjaroTest.java
-        │                   ├── LenyTest.java
-        │                   ├── LepegetoTest.java
-        │                   └── SzivacsTest.java
-        └── robot
-            └── BlackBox.robot
-
-#+end_src
 
 ** Tesztkörnyezet
 
@@ -359,7 +225,8 @@ Miután elkészült a vagrant a virtuális gépen utolsó lépésként kiadja a 
 [ neilus@Lisa 1st_bead (master=) ]$ vagrant destroy # törli a virtuális gépet
 #+end_src
 
-* DONE A megoldáshoz szükséges típusok absztrakt leírása
+
+* A megoldáshoz szükséges típusok absztrakt leírása
 
 ** Leny absztrakt osztály
 
@@ -416,9 +283,9 @@ A különböző fajok megkülönböztetésére szolgál az input fájlból való
 A fajra vonatkozó karakterisztikákat tárolja (maxWater, savedWater, consumedWater, moveDistance), valamint a különböző napokra jellemző faji magatartást.
 
 
-* TODO Tesztelési terv
+* Tesztelési terv
 
-** DONE Black-Box acceptance tesztek
+** Black-Box acceptance tesztek
 A Black-Box tesztek implementálásához a [[http://robotframework.org/][ROBOT]] frameworköt használtam, mely a tesztek eredményeiről és futásáról html formátumú jelentést készít.
 
 A részletes teszteseteket bele értve a várt kimeneteket is a [[./src/test/robot/BlackBox.robot]] textfájl tartalmazza.
